@@ -22,7 +22,13 @@ class MainFragment : Fragment() {
         binding.lifecycleOwner = this
 
         binding.viewModel = viewModel
-Timber.i("Oncreate Called")
+
+
+        //set recyclerView's Adapter
+
+        binding.asteroidRecycler.adapter = AsteroidListAdapter()
+
+
         setHasOptionsMenu(true)
 
         return binding.root

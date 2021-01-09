@@ -42,7 +42,7 @@ class MainViewModel : ViewModel() {
 
                 val parsedResponse = parseJSONStringResponse(response)
 
-
+_asteroidList.value = parsedResponse
                 Timber.i("The raw data returned is $parsedResponse")
             } catch (e: Exception) {
                 Timber.i("The raw data returned is $e")
