@@ -33,36 +33,27 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         get() = _loadingStatus
 
     init {
-
-        viewModelScope.launch {
-            // repo.getAsteroidsListFromNetwork(DateFilter.WEEK_ASTEROIDS)
-
-        }
-
         // get picture of the Day when viewModel is first created
         getPictureOfTheDay()
-
-
     }
 
 
     private fun getPictureOfTheDay() {
-//launch coroutine inside viewModelScope
+        //launch coroutine inside viewModelScope
         viewModelScope.launch {
-
 
             try {
                 _loadingStatus.value = PictureLoadingStatus.LOADING
 
                 //get picture of the day from network
-                val picture: PictureOfDay =
-                    NeoWService.neoWService.getPictureOfTheDay(Constants.API_KEY)
+                val picture: PictureOfDay = NeoWService.neoWService.getPictureOfTheDay(Constants.API_KEY)
                 // Timber.i("The picture is $picture")
                 _pictureOfTheDay.value = picture
 
                 //change picture loading status
                 _loadingStatus.value = PictureLoadingStatus.DONE
-            } catch (e: java.lang.Exception) {
+            }
+            catch (e: Exception) {
                 e.printStackTrace()
 
                 //change picture loading status in case of connection error
@@ -78,7 +69,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
 enum class PictureLoadingStatus {
 
-    DONE, ERROR, LOADING
+    DONE,
+    ERROR,
+    LOADING
 }
 
 
