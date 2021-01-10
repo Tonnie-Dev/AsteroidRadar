@@ -1,15 +1,14 @@
 package com.udacity.asteroidradar.main
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
+import android.app.Application
+import androidx.lifecycle.*
 import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.Utils
 import com.udacity.asteroidradar.api.NeoWService
 import com.udacity.asteroidradar.api.parseJSONStringResponse
+import com.udacity.asteroidradar.database.AsteroidDatabase
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.text.ParseException
@@ -17,11 +16,12 @@ import java.text.SimpleDateFormat
 import java.time.LocalDate
 import java.util.*
 
-class MainViewModel : ViewModel() {
+class MainViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val _loading = MutableLiveData<Boolean>()
-    val loading:LiveData<Boolean>
-    get() = _loading
+
+    //instantiate database
+    val database = AsteroidDatabase.getDatabaseInstance()
+
 
     private val _asteroidList = MutableLiveData<List<Asteroid>>()
     val asteroidList: LiveData<List<Asteroid>>
@@ -31,6 +31,9 @@ class MainViewModel : ViewModel() {
     val picture:LiveData<PictureOfDay>
     get() = _picture
 
+    private val _loading = MutableLiveData<Boolean>()
+    val loading:LiveData<Boolean>
+        get() = _loading
     init {
         getAsteroids()
         getPictureOfTheDay()
@@ -51,8 +54,8 @@ class MainViewModel : ViewModel() {
                 val response = NeoWService.neoWService.getNearEarthObjects(
 
 
-                    Utils.getTodayDate(),
-                    Utils.getDaysTo(7),
+                    "2021-01-10",
+                    "2021-01-13",
                     "cQFHop6TptuKuyX1784hIC86YWgsWuFqOsxUTYoI")
 
 
@@ -93,3 +96,4 @@ class MainViewModel : ViewModel() {
 
 
 }
+

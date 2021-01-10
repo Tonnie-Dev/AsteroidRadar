@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar
 
 import android.util.TimeUtils
+import okhttp3.internal.Util
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -29,4 +30,9 @@ class Utils {
             return getDay(time)
         }
     }
+}
+
+enum class DateFilter(val date: String){
+
+    TODAY_ASTEROIDS(Utils.getTodayDate()), WEEK_ASTEROIDS(Utils.getDaysTo(7))
 }

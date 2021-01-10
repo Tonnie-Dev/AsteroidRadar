@@ -16,6 +16,6 @@ interface AsteroidDAO {
 
     //Insert Videos - varags
     @Insert(onConflict = REPLACE)
-    fun insertAsteroids(vararg asteroids: AsteroidEntity)
+    fun insertAsteroids(asteroidList: List<AsteroidEntity>)
 
 }
