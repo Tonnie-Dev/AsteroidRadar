@@ -11,10 +11,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-//initialize Timber
-        Timber.plant(Timber.DebugTree())
-        val date = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(Date())
 
-        Timber.i("Today is $date")
+
     }
 }

@@ -10,6 +10,11 @@ import retrofit2.HttpException
 
 class LoadAsteroidsWorker(context: Context, params: WorkerParameters) :
     CoroutineWorker(context, params) {
+
+    companion object {
+        const val WORK_NAME = "LoadAsteroidWorker"
+    }
+
     override suspend fun doWork(): Result {
 
         //get instance of database for use with Repo
