@@ -5,7 +5,6 @@ import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.Constants
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.NeoWService
@@ -22,14 +21,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     //create repo
     val repo = AsteroidRepo(database)
 
+    //expose LiveData from offline Database
+    val asteroidList = repo.asteroidLiveData
 
-    private val _asteroidList = MutableLiveData<List<Asteroid>>()
-    val asteroidList: LiveData<List<Asteroid>>
-        get() = repo.asteroidLiveData
-
-    private val _picture = MutableLiveData<PictureOfDay>()
-    val picture: LiveData<PictureOfDay>
-        get() = _picture
+    private val _pictureOfTheDay = MutableLiveData<PictureOfDay>()
+    val pictureOfTheDay: LiveData<PictureOfDay>
+        get() = _pictureOfTheDay
 
     private val _loadingStatus = MutableLiveData<PictureLoadingStatus>()
     val loadingStatus: LiveData<PictureLoadingStatus>
@@ -61,7 +58,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 val picture: PictureOfDay =
                     NeoWService.neoWService.getPictureOfTheDay(Constants.API_KEY)
                 // Timber.i("The picture is $picture")
-                _picture.value = picture
+                _pictureOfTheDay.value = picture
 
                 //change picture loading status
                 _loadingStatus.value = PictureLoadingStatus.DONE
