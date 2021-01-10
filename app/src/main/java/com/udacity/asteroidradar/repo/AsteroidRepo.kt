@@ -49,7 +49,7 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
             }
             DateFilter.WEEK_ASTEROIDS  -> {
 
-                Transformations.map(database.asteroidDao.getNextSevenDaysAsteroid(filter.startDate, filter.endDate)){
+                Transformations.map(database.asteroidDao.getWeekAsteroids(filter.startDate, filter.endDate)){
 
                     it.convertToAsteroidDataClass()
                 }
@@ -61,4 +61,28 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
         }
 
     }
+
+    val todayAsteroids: LiveData<List<Asteroid>> =
+            Transformations.map(database.asteroidDao.getTodayAsteroids(DateFilter.TODAY_ASTEROIDS
+                                                                               .startDate, DateFilter
+                    .TODAY_ASTEROIDS.endDate)) {
+                it.convertToAsteroidDataClass()
+            }
+
+    val weekAsteroids: LiveData<List<Asteroid>> =
+            Transformations.map(database.asteroidDao.getWeekAsteroids(DateFilter.WEEK_ASTEROIDS
+                                                                               .startDate, DateFilter
+                                                                               .WEEK_ASTEROIDS.endDate)) {
+                it.convertToAsteroidDataClass()
+            }
+
+
+    val savedAsteroids: LiveData<List<Asteroid>> =
+            Transformations.map(database.asteroidDao.getAllAsteroids()){
+                it.convertToAsteroidDataClass()
+            }
+
+
+
+
 }

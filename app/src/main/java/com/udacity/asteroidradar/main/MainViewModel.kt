@@ -1,10 +1,7 @@
 package com.udacity.asteroidradar.main
 
 import android.app.Application
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.viewModelScope
+import androidx.lifecycle.*
 import com.udacity.asteroidradar.*
 import com.udacity.asteroidradar.api.NeoWService
 import com.udacity.asteroidradar.api.parseJSONStringResponse
@@ -24,11 +21,28 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val repo = AsteroidRepo(database)
 
 
-private val _databaseAsteroidList= MutableLiveData<List<Asteroid>>()
-    val databaseAsteroidList:LiveData<List<Asteroid>>
-    get() = _databaseAsteroidList
 
 
+
+
+    private val _databaseAsteroidList = MutableLiveData<String>("Week")
+    //list of asteroids to observe
+    val databaseAsteroidList = Transformations.switchMap<String, List<Asteroid>>(_databaseAsteroidList) { type ->
+        when(type) {
+            "Week" -> {
+                repo.weekAsteroids
+            }
+            "Today" -> {
+                repo.todayAsteroids
+            }
+            /*else -> MutableLiveData<List<Asteroid>>(emptyList())*/
+            else -> repo.savedAsteroids
+        }
+    }
+
+    fun onTodayMenuItemSelected(){
+        _databaseAsteroidList.value = "Today"
+    }
     private val _pictureOfTheDay = MutableLiveData<PictureOfDay>()
     val pictureOfTheDay: LiveData<PictureOfDay>
         get() = _pictureOfTheDay
@@ -67,10 +81,10 @@ private val _databaseAsteroidList= MutableLiveData<List<Asteroid>>()
 
     }
 
-    fun updateDateFilter(filter: DateFilter){
+   /* fun updateDateFilter(filter: DateFilter){
 
         (databaseAsteroidList.value as MutableLiveData<*>).value = repo.applyDateFilter(filter)
-    }
+    }*/
 
     private fun getPictureOfTheDay() {
         //launch coroutine inside viewModelScope

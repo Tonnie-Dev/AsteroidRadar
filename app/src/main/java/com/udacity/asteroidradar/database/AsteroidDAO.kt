@@ -15,7 +15,7 @@ interface AsteroidDAO {
 
     //Return a LiveData for seven days
     @Query("SELECT * FROM asteroidentity WHERE closeApproachDate BETWEEN :startDate AND :endDate ORDER BY closeApproachDate ASC")
-    fun getNextSevenDaysAsteroid(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
+    fun getWeekAsteroids(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
 
 
     //Return a LiveData today
