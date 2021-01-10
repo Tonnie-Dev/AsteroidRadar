@@ -44,9 +44,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
 
-    fun onTodayMenuItemSelected(){
+    /*fun onTodayMenuItemSelected(){
         _databaseAsteroidList.value = "Today"
-    }
+    }*/
     private val _pictureOfTheDay = MutableLiveData<PictureOfDay>()
     val pictureOfTheDay: LiveData<PictureOfDay>
         get() = _pictureOfTheDay
@@ -85,7 +85,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-  fun updateRange(range: String){
+  fun updateRange(range: DurationRange){
 
       _databaseAsteroidList.value = range
     }

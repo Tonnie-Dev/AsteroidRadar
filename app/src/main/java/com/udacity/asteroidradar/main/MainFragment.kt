@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.DateFilter
+import com.udacity.asteroidradar.DurationRange
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
 
@@ -51,14 +52,14 @@ class MainFragment : Fragment() {
 
             R.id.show_today_asteroid -> {
 
-                viewModel.updateRange("Today")
+                viewModel.updateRange(DurationRange.RANGE_TODAY)
                 return true}
             R.id.show_week_asteroids -> {
 
-               // viewModel.updateDateFilter(DateFilter.WEEK_ASTEROIDS)
+                viewModel.updateRange(DurationRange.RANGE_ONE_WEEK)
                 return true}
             R.id.show_saved_asteroids -> {
-               // viewModel.updateDateFilter(DateFilter.SAVED_ASTEROIDS)
+                viewModel.updateRange(DurationRange.RANGE_ALL_TIME)
 
                 return true}
 
