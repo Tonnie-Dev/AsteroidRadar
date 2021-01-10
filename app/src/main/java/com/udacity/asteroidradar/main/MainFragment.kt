@@ -48,7 +48,14 @@ class MainFragment : Fragment() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when(item.itemId){
 
-            R.id.sho
+            R.id.show_today_asteroid -> {
+                return true}
+            R.id.show_week_asteroids -> {
+                return true}
+            R.id.show_saved_asteroids -> {
+                return true}
+
+            else ->  super.onOptionsItemSelected(item)
         }
     }
 }

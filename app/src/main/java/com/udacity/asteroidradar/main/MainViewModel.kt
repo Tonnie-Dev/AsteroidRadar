@@ -6,11 +6,16 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.udacity.asteroidradar.Constants
+import com.udacity.asteroidradar.DateFilter
 import com.udacity.asteroidradar.PictureOfDay
 import com.udacity.asteroidradar.api.NeoWService
+import com.udacity.asteroidradar.api.parseJSONStringResponse
+import com.udacity.asteroidradar.asAsteroidEntity
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.repo.AsteroidRepo
+import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -35,9 +40,31 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     init {
         // get picture of the Day when viewModel is first created
         getPictureOfTheDay()
+testMethod(DateFilter.WEEK_ASTEROIDS)
+
     }
 
 
+
+    fun testMethod(filter:DateFilter){
+
+       viewModelScope.launch {
+withContext(IO){
+
+
+    //get network result
+    val networkResponse = NeoWService.neoWService.getNearEarthObjects(
+            filter.startDate,
+            filter.endDate,
+            Constants.API_KEY)
+
+    //insert into AsteroidDatabase
+    val parsedResponse = parseJSONStringResponse(networkResponse)
+    database.asteroidDao.insertAsteroids(parsedResponse.asAsteroidEntity())
+}
+       }
+
+    }
     private fun getPictureOfTheDay() {
         //launch coroutine inside viewModelScope
         viewModelScope.launch {

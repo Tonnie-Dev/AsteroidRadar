@@ -32,7 +32,8 @@ class Utils {
     }
 }
 
-enum class DateFilter(val date: String){
+enum class DateFilter(val startDate: String, val endDate: String){
 
-    TODAY_ASTEROIDS(Utils.getTodayDate()), WEEK_ASTEROIDS(Utils.getDaysTo(7))
+    TODAY_ASTEROIDS(Utils.getTodayDate(),Utils.getTodayDate()), WEEK_ASTEROIDS(Utils.getTodayDate(), Utils
+            .getDaysTo(7))
 }

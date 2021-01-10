@@ -10,8 +10,8 @@ import androidx.room.Query
 interface AsteroidDAO {
 
     //Return a LiveData to make owners observe LiveData Automatically
-    @Query("SELECT * FROM asteroidentity")
-    fun getAsteroids(): LiveData<List<AsteroidEntity>>
+    @Query("SELECT * FROM asteroidentity ORDER BY closeApproachDate ASC")
+    fun getAllAsteroids(): LiveData<List<AsteroidEntity>>
 
 
     //Insert Videos - varags

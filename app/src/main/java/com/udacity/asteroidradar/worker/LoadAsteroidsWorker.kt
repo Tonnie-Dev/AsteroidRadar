@@ -25,7 +25,7 @@ class LoadAsteroidsWorker(context: Context, params: WorkerParameters) :
 
         return try {
             //define work i.e. load asteroids from Network for the next seven days
-                repo.getAsteroidsFromNetwork(DateFilter.WEEK_ASTEROIDS)
+                repo.getAsteroidsFromNetwork()
 
             Result.success()
         }catch (e:HttpException){

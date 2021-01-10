@@ -9,7 +9,7 @@ import com.udacity.asteroidradar.api.NeoWService
 import com.udacity.asteroidradar.api.parseJSONStringResponse
 import com.udacity.asteroidradar.asAsteroidEntity
 import com.udacity.asteroidradar.database.AsteroidDatabase
-import com.udacity.asteroidradar.database.asAsteroidModel
+import com.udacity.asteroidradar.database.convertToAsteroidDataClass
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
 
@@ -17,14 +17,14 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
 
     //LOAD ASTEROID DATA FROM NETWORK INTO THE REPO
 
-    suspend fun getAsteroidsFromNetwork(filter: DateFilter) {
+    suspend fun getAsteroidsFromNetwork() {
 
         withContext(IO) {
 
-            //get network result
+            //get network result for the next seven days
             val networkResponse = NeoWService.neoWService.getNearEarthObjects(
-                filter.date,
-                filter.date,
+                DateFilter.WEEK_ASTEROIDS.startDate,
+                DateFilter.WEEK_ASTEROIDS.endDate,
                 Constants.API_KEY)
 
             //insert into AsteroidDatabase
@@ -36,8 +36,8 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
 
     //EXPOSE SAVED/OFFLINE CACHE AS LIVEDATA
     val asteroidLiveData: LiveData<List<Asteroid>> =
-        Transformations.map(database.asteroidDao.getAsteroids()) {
+        Transformations.map(database.asteroidDao.getAllAsteroids()) {
 
-            it.asAsteroidModel()
+            it.convertToAsteroidDataClass()
         }
 }

@@ -19,7 +19,7 @@ data class AsteroidEntity(
     val isPotentiallyHazardous: Boolean
 )
 
-fun List<AsteroidEntity>.asAsteroidModel(): List<Asteroid>{
+fun List<AsteroidEntity>.convertToAsteroidDataClass(): List<Asteroid>{
 
 
    return  this.map {
@@ -35,3 +35,10 @@ Asteroid(
     isPotentiallyHazardous = it.isPotentiallyHazardous)
     }
 }
+
+/*
+fun List<Asteroid>.convertToDatabaseEntity(): List<AsteroidEntity>{
+
+
+    //return this.map {  }
+}*/
