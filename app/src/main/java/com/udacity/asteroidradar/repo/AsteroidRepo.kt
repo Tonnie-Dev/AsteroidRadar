@@ -17,7 +17,7 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
 
     //LOAD ASTEROID DATA FROM NETWORK INTO THE REPO
 
-    suspend fun getAsteroidsListFromNetwork(filter: DateFilter) {
+    suspend fun getAsteroidsFromNetwork(filter: DateFilter) {
 
         withContext(IO) {
 
