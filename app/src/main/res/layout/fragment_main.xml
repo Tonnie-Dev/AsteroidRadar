@@ -4,7 +4,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="viewModel"
             type="com.udacity.asteroidradar.main.MainViewModel" />
@@ -61,18 +63,17 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
-            pictureLoadingStatus=""
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="411dp"
-            android:layout_marginBottom="731dp"
-            app:layout_constraintBottom_toBottomOf="parent"
+            pictureLoadingStatus="@{viewModel.loadingStatus}"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            app:layout_constraintBottom_toBottomOf="@+id/activity_main_image_of_the_day_layout"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-
+        <!--Comment on the ProgressBar as the offline data from the database is
+        always live. Instead switch this to the Picture of the day imageView-->
         <!--
         <ProgressBar
             android:id="@+id/status_loading_wheel"
