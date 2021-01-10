@@ -104,3 +104,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
 }
 
+enum class PictureLoadingStatus {
+
+    DONE, ERROR, LOADING
+}

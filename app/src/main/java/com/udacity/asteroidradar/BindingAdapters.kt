@@ -1,11 +1,16 @@
 package com.udacity.asteroidradar
 
+import android.media.Image
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.view.isGone
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.udacity.asteroidradar.main.AsteroidListAdapter
+import com.udacity.asteroidradar.main.PictureLoadingStatus
 import timber.log.Timber
 
 @BindingAdapter("statusIcon")
@@ -69,4 +74,30 @@ fun ImageView.showPicture(pictureOfDay: PictureOfDay?){
     load(pictureOfDay?.url)
 
     Timber.i("$pictureOfDay")
+}
+
+@BindingAdapter("pictureLoadingStatus")
+fun ImageView. pictureLoadingStatus(status:PictureLoadingStatus?){
+
+    when(status){
+
+        PictureLoadingStatus.DONE -> {
+
+            visibility = GONE
+        }
+
+
+        PictureLoadingStatus.ERROR -> {
+
+            visibility = VISIBLE
+            setImageResource(R.drawable.ic_connection_error)
+        }
+
+        PictureLoadingStatus.LOADING -> {
+
+            visibility = VISIBLE
+            setImageResource(R.drawable.loading_animation)
+        }
+
+    }
 }
