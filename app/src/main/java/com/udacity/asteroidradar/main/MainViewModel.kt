@@ -25,18 +25,22 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
 
 
-    private val _databaseAsteroidList = MutableLiveData<String>("Week")
+    private val _databaseAsteroidList = MutableLiveData<DurationRange>(DurationRange.RANGE_ONE_WEEK)
     //list of asteroids to observe
-    val databaseAsteroidList = Transformations.switchMap<String, List<Asteroid>>(_databaseAsteroidList) { type ->
-        when(type) {
-            "Week" -> {
-                repo.weekAsteroids
-            }
-            "Today" -> {
+    val databaseAsteroidList = Transformations.switchMap<DurationRange, List<Asteroid>>(_databaseAsteroidList) {
+        range ->
+        when(range) {
+            DurationRange.RANGE_TODAY -> {
                 repo.todayAsteroids
             }
-            /*else -> MutableLiveData<List<Asteroid>>(emptyList())*/
-            else -> repo.savedAsteroids
+            DurationRange.RANGE_ONE_WEEK -> {
+                repo.weekAsteroids
+            }
+
+            DurationRange.RANGE_ALL_TIME -> {repo.savedAsteroids }
+            else -> MutableLiveData<List<Asteroid>>(emptyList())
+
+
         }
     }
 
@@ -81,10 +85,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
-   /* fun updateDateFilter(filter: DateFilter){
+  fun updateRange(range: String){
 
-        (databaseAsteroidList.value as MutableLiveData<*>).value = repo.applyDateFilter(filter)
-    }*/
+      _databaseAsteroidList.value = range
+    }
 
     private fun getPictureOfTheDay() {
         //launch coroutine inside viewModelScope

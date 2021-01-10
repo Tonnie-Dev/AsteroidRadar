@@ -31,6 +31,11 @@ enum class DateFilter(val startDate: String, val endDate: String){
             .getDaysTo(7)), SAVED_ASTEROIDS("", "")
 }
 
+enum class DurationRange(val range: String){
+
+    RANGE_TODAY("Today"), RANGE_ONE_WEEK("Week"), RANGE_ALL_TIME("AllTime")
+}
+
 /*
 sealed class DateFilter(val startDate: String, val endDate: String){
 

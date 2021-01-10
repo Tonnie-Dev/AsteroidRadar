@@ -51,7 +51,7 @@ class MainFragment : Fragment() {
 
             R.id.show_today_asteroid -> {
 
-                //viewModel.updateDateFilter(DateFilter.TODAY_ASTEROIDS)
+                viewModel.updateRange("Today")
                 return true}
             R.id.show_week_asteroids -> {
 
