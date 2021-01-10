@@ -17,13 +17,6 @@ class Utils {
         }
 
 
-        fun getDaysAgo(days: Long):String{
-            val diffAgo = TimeUnit.DAYS.toMillis(days)
-            val time = System.currentTimeMillis() - diffAgo
-            return getDay(time)
-        }
-
-
         fun getDaysTo(days: Long):String{
             val diffAgo = TimeUnit.DAYS.toMillis(days)
             val time = System.currentTimeMillis() + diffAgo
@@ -35,5 +28,14 @@ class Utils {
 enum class DateFilter(val startDate: String, val endDate: String){
 
     TODAY_ASTEROIDS(Utils.getTodayDate(),Utils.getTodayDate()), WEEK_ASTEROIDS(Utils.getTodayDate(), Utils
-            .getDaysTo(7))
+            .getDaysTo(7)), SAVED_ASTEROIDS("", "")
 }
+
+/*
+sealed class DateFilter(val startDate: String, val endDate: String){
+
+    class TodayAsteroids(Utils.getTodayDate(),Utils.getTodayDate()):DateFilter
+    class WeekAsteroids(Utils.getTodayDate(), Utils.getDaysTo(7))
+    class AllAsteroids(Utils.getTodayDate(), Utils.getDaysTo(7))
+
+}*/

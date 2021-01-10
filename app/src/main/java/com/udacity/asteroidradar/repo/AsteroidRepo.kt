@@ -35,9 +35,30 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
 
 
     //EXPOSE SAVED/OFFLINE CACHE AS LIVEDATA
-    val asteroidLiveData: LiveData<List<Asteroid>> =
-        Transformations.map(database.asteroidDao.getAllAsteroids()) {
 
-            it.convertToAsteroidDataClass()
+
+    fun applyDateFilter(filter: DateFilter):LiveData<List<Asteroid>>  {
+
+
+        return when (filter) {
+            DateFilter.TODAY_ASTEROIDS -> {
+                Transformations.map(database.asteroidDao.getTodayAsteroids(filter.startDate, filter.endDate)){
+                    it.convertToAsteroidDataClass()
+                }
+
+            }
+            DateFilter.WEEK_ASTEROIDS  -> {
+
+                Transformations.map(database.asteroidDao.getNextSevenDaysAsteroid(filter.startDate, filter.endDate)){
+
+                    it.convertToAsteroidDataClass()
+                }
+            }
+            else -> Transformations.map(database.asteroidDao.getAllAsteroids()) {
+
+                it.convertToAsteroidDataClass()
+            }
         }
+
+    }
 }

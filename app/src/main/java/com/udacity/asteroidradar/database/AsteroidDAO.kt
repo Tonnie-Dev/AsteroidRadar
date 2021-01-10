@@ -9,12 +9,20 @@ import androidx.room.Query
 @Dao
 interface AsteroidDAO {
 
-    //Return a LiveData to make owners observe LiveData Automatically
+    //Return a LiveData for all saved asteroids
     @Query("SELECT * FROM asteroidentity ORDER BY closeApproachDate ASC")
     fun getAllAsteroids(): LiveData<List<AsteroidEntity>>
 
+    //Return a LiveData for seven days
+    @Query("SELECT * FROM asteroidentity WHERE closeApproachDate >=:startDate AND closeApproachDate <=:endDate ORDER BY closeApproachDate ASC")
+    fun getNextSevenDaysAsteroid(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
 
-    //Insert Videos - varags
+
+    //Return a LiveData today
+    @Query("SELECT * FROM asteroidentity WHERE closeApproachDate >=:startDate AND closeApproachDate <=:endDate ORDER BY closeApproachDate ASC")
+    fun getTodayAsteroids(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
+
+    //Insert Asteroid and replace items in case of duplications
     @Insert(onConflict = REPLACE)
     fun insertAsteroids(asteroidList: List<AsteroidEntity>)
 
