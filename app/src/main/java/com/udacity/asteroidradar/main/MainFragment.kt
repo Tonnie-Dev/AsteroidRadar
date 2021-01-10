@@ -4,9 +4,9 @@ import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.FragmentMainBinding
-import timber.log.Timber
 
 class MainFragment : Fragment() {
 
@@ -15,7 +15,7 @@ class MainFragment : Fragment() {
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         val binding = FragmentMainBinding.inflate(inflater)
 
         //make binding observeLive Data
@@ -24,9 +24,15 @@ class MainFragment : Fragment() {
         binding.viewModel = viewModel
 
 
+
+
         //set recyclerView's Adapter
 
-        binding.asteroidRecycler.adapter = AsteroidListAdapter()
+        binding.asteroidRecycler.adapter = AsteroidListAdapter(OnClickListener {
+
+
+            findNavController().navigate(MainFragmentDirections.actionShowDetail(it))
+        })
 
 
         setHasOptionsMenu(true)

@@ -11,6 +11,7 @@
 
     </data>
 
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
@@ -18,40 +19,39 @@
 
         <TextView
             android:id="@+id/codeNameTextView"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
             android:text="@{asteroid.codename}"
             android:textColor="@android:color/white"
-            app:layout_constraintEnd_toStartOf="@+id/hazardFactorImageView"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
 
         <TextView
             android:id="@+id/approachDateTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginEnd="16dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
             android:text="@{asteroid.closeApproachDate}"
             android:textColor="@android:color/white"
-            app:layout_constraintEnd_toStartOf="@+id/hazardFactorImageView"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/codeNameTextView" />
 
         <ImageView
-            android:id="@+id/hazardFactorImageView"
-            android:layout_width="47dp"
-            android:layout_height="35dp"
-            android:layout_marginTop="24dp"
+            android:id="@+id/imageView"
+            android:layout_width="40dp"
+            android:layout_height="50dp"
+
             android:layout_marginEnd="16dp"
-            android:layout_marginBottom="28dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@mipmap/ic_launcher" />
+            statusIcon="@{asteroid.potentiallyHazardous}"
+            tools:srcCompat="@mipmap/ic_launcher_round" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

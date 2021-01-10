@@ -1,15 +1,19 @@
 package com.udacity.asteroidradar.main
 
 
+import android.database.DatabaseUtils
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.AsteroidListItemBinding
 
-class AsteroidListAdapter() : ListAdapter<Asteroid, AsteroidListAdapter.ViewHolder>(DiffClass()) {
+class AsteroidListAdapter(val clickListener:OnClickListener) : ListAdapter<Asteroid, AsteroidListAdapter.ViewHolder>(DiffClass()) {
 
 
     //inflate ViewHolder
@@ -22,6 +26,10 @@ class AsteroidListAdapter() : ListAdapter<Asteroid, AsteroidListAdapter.ViewHold
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val asteroid = getItem(position)
+        holder.itemView.setOnClickListener {
+
+            clickListener.onClick(asteroid)
+        }
         holder.bind(asteroid)
     }
 
@@ -41,7 +49,8 @@ class AsteroidListAdapter() : ListAdapter<Asteroid, AsteroidListAdapter.ViewHold
 
                 val inflater = LayoutInflater.from(parent.context)
 
-                return ViewHolder(AsteroidListItemBinding.inflate(inflater))
+                val binding = DataBindingUtil.inflate<AsteroidListItemBinding>(inflater,R.layout.asteroid_list_item,parent,false)
+                return ViewHolder(binding)
 
             }
 
@@ -64,4 +73,9 @@ class DiffClass : DiffUtil.ItemCallback<Asteroid>() {
         return oldItem == newItem
     }
 
+}
+
+
+class OnClickListener(val clickListener: (asteroid:Asteroid) -> Unit) {
+    fun onClick(asteroid:Asteroid) = clickListener(asteroid)
 }
