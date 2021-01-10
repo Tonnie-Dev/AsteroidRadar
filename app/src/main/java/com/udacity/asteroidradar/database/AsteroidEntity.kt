@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 
 @Entity
-class EntityClass(
+data class AsteroidEntity(
 @PrimaryKey
     val id: Long,
     val codename: String,
