@@ -14,12 +14,12 @@ interface AsteroidDAO {
     fun getAllAsteroids(): LiveData<List<AsteroidEntity>>
 
     //Return a LiveData for seven days
-    @Query("SELECT * FROM asteroidentity WHERE closeApproachDate >=:startDate AND closeApproachDate <=:endDate ORDER BY closeApproachDate ASC")
+    @Query("SELECT * FROM asteroidentity WHERE closeApproachDate BETWEEN :startDate AND :endDate ORDER BY closeApproachDate ASC")
     fun getNextSevenDaysAsteroid(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
 
 
     //Return a LiveData today
-    @Query("SELECT * FROM asteroidentity WHERE closeApproachDate >=:startDate AND closeApproachDate <=:endDate ORDER BY closeApproachDate ASC")
+    @Query("SELECT * FROM asteroidentity WHERE closeApproachDate BETWEEN :startDate AND :endDate ORDER BY closeApproachDate ASC")
     fun getTodayAsteroids(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
 
     //Insert Asteroid and replace items in case of duplications
