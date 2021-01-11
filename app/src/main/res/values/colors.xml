@@ -11,14 +11,26 @@
 
 
     <!--My Generated Colors-->
-    <color name="primaryColor">#000000</color>
-    <color name="primaryLightColor">#2c2c2c</color>
-    <color name="primaryDarkColor">#000000</color>
-    <color name="secondaryColor">#00ff00</color>
-    <color name="secondaryLightColor">#70ff56</color>
-    <color name="secondaryDarkColor">#00ca00</color>
-    <color name="primaryTextColor">#ffffff</color>
-    <color name="secondaryTextColor">#000000</color>
+ <color name="primaryColor">#000000</color>
+ <color name="primaryLightColor">#2c2c2c</color>
+ <color name="primaryDarkColor">#000000</color>
+ <color name="secondaryColor">#4e342e</color>
+ <color name="secondaryLightColor">#7b5e57</color>
+ <color name="secondaryDarkColor">#260e04</color>
+ <color name="primaryTextColor">#ffffff</color>
+ <color name="secondaryTextColor">#ffffff</color>
+
+
+ <!--<color name="primaryColor">#000000</color>
+ <color name="primaryLightColor">#2c2c2c</color>
+ <color name="primaryDarkColor">#000000</color>
+ <color name="secondaryColor">#00ff00</color>
+ <color name="secondaryLightColor">#70ff56</color>
+ <color name="secondaryDarkColor">#00ca00</color>
+ <color name="primaryTextColor">#ffffff</color>
+ <color name="secondaryTextColor">#000000</color>-->
+
+<!--Others-->
  <color name="potentially_hazardous">#CC0000</color>
  <color name="app_background">#010613</color>
  <color name="default_text_color">#FFFFFF</color>

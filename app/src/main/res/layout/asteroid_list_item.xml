@@ -23,6 +23,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+
             android:text="@{asteroid.codename}"
             android:textAppearance="?attr/textAppearanceHeadline6"
             android:textColor="@android:color/white"
