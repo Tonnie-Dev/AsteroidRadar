@@ -40,10 +40,5 @@ enum class DurationRange(val range: String) {
     RANGE_ALL_TIME("AllTime")
 }
 
-//Enum class to control spinner for the image of the day
-enum class PictureLoadingStatus {
-    DONE,
-    ERROR,
-    LOADING
-}
+
 

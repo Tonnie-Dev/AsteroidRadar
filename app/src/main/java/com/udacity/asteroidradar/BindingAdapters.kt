@@ -74,30 +74,3 @@ fun ImageView.showPicture(pictureOfDay: PictureOfDay?) {
 
 }
 
-//Binding Adapter for setting up the loading status spinner
-@BindingAdapter("pictureLoadingStatus")
-fun ImageView.pictureLoadingStatus(status: PictureLoadingStatus?) {
-
-    when (status) {
-
-        //Make spinner disappear when image of the day is available
-        PictureLoadingStatus.DONE -> {
-
-            visibility = GONE
-        }
-
-
-        PictureLoadingStatus.ERROR -> {
-            //Replace spinner with a connection error drawable
-            visibility = VISIBLE
-            setImageResource(R.drawable.ic_connection_error)
-        }
-
-        PictureLoadingStatus.LOADING -> {
-            //Make spinner appear if the image is loading
-            visibility = VISIBLE
-            setImageResource(R.drawable.loading_animation)
-        }
-
-    }
-}

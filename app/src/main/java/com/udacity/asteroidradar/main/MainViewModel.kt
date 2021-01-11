@@ -46,10 +46,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val pictureOfTheDay: LiveData<PictureOfDay>
         get() = _pictureOfTheDay
 
-    //MutableLiveData to track picture of the day loading status(ERROR,DONE,LOADING)
-    private val _loadingStatus = MutableLiveData<PictureLoadingStatus>()
-    val loadingStatus: LiveData<PictureLoadingStatus>
-        get() = _loadingStatus
+
 
     init {
         // get picture of the Day when viewModel is first created
@@ -61,8 +58,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         viewModelScope.launch {
 
             try {
-                //change picture loading status to LOADING
-                _loadingStatus.value = PictureLoadingStatus.LOADING
+
 
                 //get picture of the day from network
                 val picture: PictureOfDay = NeoWService.neoWService.getPictureOfTheDay(Constants.API_KEY)
@@ -70,14 +66,11 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 //set result to MutableLiveDataObject
                 _pictureOfTheDay.value = picture
 
-                //change picture loading status to DONE
-                _loadingStatus.value = PictureLoadingStatus.DONE
+
             }
             catch (e: Exception) {
                 e.printStackTrace()
 
-                //change picture loading status in case of connection error to ERROR
-                _loadingStatus.value = PictureLoadingStatus.ERROR
             }
         }
 
