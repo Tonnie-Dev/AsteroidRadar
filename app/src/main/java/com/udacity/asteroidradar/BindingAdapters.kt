@@ -1,16 +1,13 @@
 package com.udacity.asteroidradar
 
-import android.media.Image
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.core.view.isGone
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import com.udacity.asteroidradar.main.AsteroidListAdapter
-import com.udacity.asteroidradar.main.PictureLoadingStatus
 import timber.log.Timber
 
 @BindingAdapter("statusIcon")

@@ -36,11 +36,11 @@ enum class DurationRange(val range: String){
     RANGE_TODAY("Today"), RANGE_ONE_WEEK("Week"), RANGE_ALL_TIME("AllTime")
 }
 
-/*
-sealed class DateFilter(val startDate: String, val endDate: String){
+//Enum class to control spinner for the image of the day
+enum class PictureLoadingStatus {
 
-    class TodayAsteroids(Utils.getTodayDate(),Utils.getTodayDate()):DateFilter
-    class WeekAsteroids(Utils.getTodayDate(), Utils.getDaysTo(7))
-    class AllAsteroids(Utils.getTodayDate(), Utils.getDaysTo(7))
+    DONE,
+    ERROR,
+    LOADING
+}
 
-}*/

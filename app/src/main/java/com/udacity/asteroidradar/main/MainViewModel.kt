@@ -4,12 +4,9 @@ import android.app.Application
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.*
 import com.udacity.asteroidradar.api.NeoWService
-import com.udacity.asteroidradar.api.parseJSONStringResponse
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.repo.AsteroidRepo
-import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -21,28 +18,26 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     val repo = AsteroidRepo(database)
 
 
-
-
-
-
     private val _databaseAsteroidList = MutableLiveData<DurationRange>(DurationRange.RANGE_ONE_WEEK)
     //list of asteroids to observe
-    val databaseAsteroidList = Transformations.switchMap<DurationRange, List<Asteroid>>(_databaseAsteroidList) {
-        range ->
-        when(range) {
-            DurationRange.RANGE_TODAY -> {
-                repo.todayAsteroids
+    val databaseAsteroidList =
+            Transformations.switchMap<DurationRange, List<Asteroid>>(_databaseAsteroidList) { range ->
+                when (range) {
+                    DurationRange.RANGE_TODAY -> {
+                        repo.todayAsteroids
+                    }
+                    DurationRange.RANGE_ONE_WEEK -> {
+                        repo.weekAsteroids
+                    }
+
+                    DurationRange.RANGE_ALL_TIME -> {
+                        repo.savedAsteroids
+                    }
+                    else                         -> MutableLiveData<List<Asteroid>>(emptyList())
+
+
+                }
             }
-            DurationRange.RANGE_ONE_WEEK -> {
-                repo.weekAsteroids
-            }
-
-            DurationRange.RANGE_ALL_TIME -> {repo.savedAsteroids }
-            else -> MutableLiveData<List<Asteroid>>(emptyList())
-
-
-        }
-    }
 
     /*fun onTodayMenuItemSelected(){
         _databaseAsteroidList.value = "Today"
@@ -59,56 +54,31 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         // get picture of the Day when viewModel is first created
         getPictureOfTheDay()
 
-        //expose LiveData from offline Database
-        val asteroidList = repo.applyDateFilter(DateFilter.SAVED_ASTEROIDS)
-
-        testMethod(DateFilter.WEEK_ASTEROIDS)
 
     }
 
-
-    fun testMethod(filter: DateFilter) {
-
-        viewModelScope.launch {
-            withContext(IO) {
-
-
-                //get network result
-                val networkResponse = NeoWService.neoWService.getNearEarthObjects(
-                        filter.startDate, filter.endDate, Constants.API_KEY)
-
-                //insert into AsteroidDatabase
-                val parsedResponse = parseJSONStringResponse(networkResponse)
-                database.asteroidDao.insertAsteroids(parsedResponse.asAsteroidEntity())
-            }
-        }
-
-    }
-
-  fun updateRange(range: DurationRange){
-
-      _databaseAsteroidList.value = range
-    }
 
     private fun getPictureOfTheDay() {
         //launch coroutine inside viewModelScope
         viewModelScope.launch {
 
             try {
+                //change picture loading status to LOADING
                 _loadingStatus.value = PictureLoadingStatus.LOADING
 
                 //get picture of the day from network
                 val picture: PictureOfDay = NeoWService.neoWService.getPictureOfTheDay(Constants.API_KEY)
-                // Timber.i("The picture is $picture")
+
+                //set result to MutableLiveDataObject
                 _pictureOfTheDay.value = picture
 
-                //change picture loading status
+                //change picture loading status to DONE
                 _loadingStatus.value = PictureLoadingStatus.DONE
             }
             catch (e: Exception) {
                 e.printStackTrace()
 
-                //change picture loading status in case of connection error
+                //change picture loading status in case of connection error to ERROR
                 _loadingStatus.value = PictureLoadingStatus.ERROR
             }
         }
@@ -116,40 +86,12 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     }
 
+    //method for updating date range as per menu selection
+    fun updateRange(range: DurationRange) {
 
-}
-
-enum class PictureLoadingStatus {
-
-    DONE,
-    ERROR,
-    LOADING
+        _databaseAsteroidList.value = range
+    }
 }
 
 
-/* fun getAsteroids() {
-        _loadingStatus.value = true
 
-        //viewModelScope
-
-        viewModelScope.launch {
-            try {
-                val response = NeoWService.neoWService.getNearEarthObjects(
-
-
-                    "2021-01-10",
-                    "2021-01-13",
-                    "cQFHop6TptuKuyX1784hIC86YWgsWuFqOsxUTYoI")
-
-
-                val parsedResponse = parseJSONStringResponse(response)
-                _loadingStatus.value = false
-               // _asteroidList.value = repo.asteroidLiveData
-              // Timber.i("The raw data returned is $parsedResponse")
-            } catch (e: Exception) {
-                Timber.i("The raw data returned is $e")
-
-            }
-
-        }}
-*/

@@ -16,9 +16,12 @@ class MainFragment : Fragment() {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
+    //late init for binding
+    private lateinit var binding: FragmentMainBinding
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
                               savedInstanceState: Bundle?): View {
-        val binding = FragmentMainBinding.inflate(inflater)
+     binding = FragmentMainBinding.inflate(inflater)
 
         //make binding observeLive Data
         binding.lifecycleOwner = this
@@ -53,14 +56,18 @@ class MainFragment : Fragment() {
             R.id.show_today_asteroid -> {
 
                 viewModel.updateRange(DurationRange.RANGE_TODAY)
+                binding.asteroidRecycler.scrollToPosition(0)
                 return true}
             R.id.show_week_asteroids -> {
 
                 viewModel.updateRange(DurationRange.RANGE_ONE_WEEK)
+                binding.asteroidRecycler.scrollToPosition(0)
                 return true}
             R.id.show_saved_asteroids -> {
-                viewModel.updateRange(DurationRange.RANGE_ALL_TIME)
 
+
+                viewModel.updateRange(DurationRange.RANGE_ALL_TIME)
+                binding.asteroidRecycler.scrollToPosition(0)
                 return true}
 
             else ->  super.onOptionsItemSelected(item)

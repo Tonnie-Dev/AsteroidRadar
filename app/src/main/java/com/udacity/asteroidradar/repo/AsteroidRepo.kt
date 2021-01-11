@@ -15,7 +15,7 @@ import kotlinx.coroutines.withContext
 
 class AsteroidRepo(private val database: AsteroidDatabase) {
 
-    //LOAD ASTEROID DATA FROM NETWORK INTO THE REPO
+    //LOAD ASTEROID DATA FROM NETWORK INTO THE REPO FOR 7 DAYS
 
     suspend fun getAsteroidsFromNetwork() {
 
@@ -36,31 +36,6 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
 
     //EXPOSE SAVED/OFFLINE CACHE AS LIVEDATA
 
-
-    fun applyDateFilter(filter: DateFilter):LiveData<List<Asteroid>>  {
-
-
-        return when (filter) {
-            DateFilter.TODAY_ASTEROIDS -> {
-                Transformations.map(database.asteroidDao.getTodayAsteroids(filter.startDate, filter.endDate)){
-                    it.convertToAsteroidDataClass()
-                }
-
-            }
-            DateFilter.WEEK_ASTEROIDS  -> {
-
-                Transformations.map(database.asteroidDao.getWeekAsteroids(filter.startDate, filter.endDate)){
-
-                    it.convertToAsteroidDataClass()
-                }
-            }
-            else -> Transformations.map(database.asteroidDao.getAllAsteroids()) {
-
-                it.convertToAsteroidDataClass()
-            }
-        }
-
-    }
 
     val todayAsteroids: LiveData<List<Asteroid>> =
             Transformations.map(database.asteroidDao.getTodayAsteroids(DateFilter.TODAY_ASTEROIDS
