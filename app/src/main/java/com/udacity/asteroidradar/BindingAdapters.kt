@@ -14,7 +14,8 @@ import timber.log.Timber
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
         imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
-    } else {
+    }
+    else {
         imageView.setImageResource(R.drawable.ic_status_normal)
     }
 }
@@ -23,7 +24,8 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
 fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
         imageView.setImageResource(R.drawable.asteroid_hazardous)
-    } else {
+    }
+    else {
         imageView.setImageResource(R.drawable.asteroid_safe)
     }
 }
@@ -47,9 +49,9 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 }
 
 
-
+//Binding adapter for RecyclerView's Data
 @BindingAdapter("recyclerViewData")
-fun  RecyclerView.displayRecyclerViewData(data : List<Asteroid>?){
+fun RecyclerView.displayRecyclerViewData(data: List<Asteroid>?) {
 
     //get adapter
     val adapter = this.adapter as AsteroidListAdapter
@@ -57,27 +59,24 @@ fun  RecyclerView.displayRecyclerViewData(data : List<Asteroid>?){
     //notifyDataSetChanged
     adapter.submitList(data)
 
-
-
-
 }
 
-
+//Binding Adapter for pictureOfTheDay using Kotlin's Coil  Library to load image
 @BindingAdapter("pictureOfTheDay")
 
-fun ImageView.showPicture(pictureOfDay: PictureOfDay?){
-
+fun ImageView.showPicture(pictureOfDay: PictureOfDay?) {
 
     load(pictureOfDay?.url)
-
     Timber.i("$pictureOfDay")
 }
 
+//Binding Adapter for setting up the loading status spinner
 @BindingAdapter("pictureLoadingStatus")
-fun ImageView. pictureLoadingStatus(status:PictureLoadingStatus?){
+fun ImageView.pictureLoadingStatus(status: PictureLoadingStatus?) {
 
-    when(status){
+    when (status) {
 
+        //Make spinner disappear when image of the day is available
         PictureLoadingStatus.DONE -> {
 
             visibility = GONE
@@ -85,13 +84,13 @@ fun ImageView. pictureLoadingStatus(status:PictureLoadingStatus?){
 
 
         PictureLoadingStatus.ERROR -> {
-
+            //Replace spinner with a connection error drawable
             visibility = VISIBLE
             setImageResource(R.drawable.ic_connection_error)
         }
 
         PictureLoadingStatus.LOADING -> {
-
+            //Make spinner appear if the image is loading
             visibility = VISIBLE
             setImageResource(R.drawable.loading_animation)
         }

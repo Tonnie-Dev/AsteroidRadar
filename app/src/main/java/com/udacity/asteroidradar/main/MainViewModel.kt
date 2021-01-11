@@ -11,17 +11,18 @@ import kotlinx.coroutines.launch
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
 
-    //instantiate database
-    val database = AsteroidDatabase.getDatabaseInstance(application)
+    //get database instant
+    private val database = AsteroidDatabase.getDatabaseInstance(application)
 
     //create repo
-    val repo = AsteroidRepo(database)
+    private val repo = AsteroidRepo(database)
 
+//MutableLiveData setup with DurationRange Enum - Default is 1 week asteroids; can be altered at with menu
+    private val _databaseAsteroidList = MutableLiveData(DurationRange.RANGE_ONE_WEEK)
 
-    private val _databaseAsteroidList = MutableLiveData<DurationRange>(DurationRange.RANGE_ONE_WEEK)
-    //list of asteroids to observe
+    //use switchMap to switch between Repo's LiveData  but can be altered at with menu
     val databaseAsteroidList =
-            Transformations.switchMap<DurationRange, List<Asteroid>>(_databaseAsteroidList) { range ->
+            Transformations.switchMap(_databaseAsteroidList) { range ->
                 when (range) {
                     DurationRange.RANGE_TODAY -> {
                         repo.todayAsteroids
@@ -33,19 +34,19 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     DurationRange.RANGE_ALL_TIME -> {
                         repo.savedAsteroids
                     }
-                    else                         -> MutableLiveData<List<Asteroid>>(emptyList())
+
+                    else-> MutableLiveData(emptyList())
 
 
                 }
             }
 
-    /*fun onTodayMenuItemSelected(){
-        _databaseAsteroidList.value = "Today"
-    }*/
+    //MutableLiveData to get store picture of the day value
     private val _pictureOfTheDay = MutableLiveData<PictureOfDay>()
     val pictureOfTheDay: LiveData<PictureOfDay>
         get() = _pictureOfTheDay
 
+    //MutableLiveData to track picture of the day loading status(ERROR,DONE,LOADING)
     private val _loadingStatus = MutableLiveData<PictureLoadingStatus>()
     val loadingStatus: LiveData<PictureLoadingStatus>
         get() = _loadingStatus
@@ -53,10 +54,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     init {
         // get picture of the Day when viewModel is first created
         getPictureOfTheDay()
-
-
     }
-
 
     private fun getPictureOfTheDay() {
         //launch coroutine inside viewModelScope
