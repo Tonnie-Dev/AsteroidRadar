@@ -1,9 +1,7 @@
 package com.udacity.asteroidradar.main
 
 
-import android.database.DatabaseUtils
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.DiffUtil
@@ -13,12 +11,12 @@ import com.udacity.asteroidradar.Asteroid
 import com.udacity.asteroidradar.R
 import com.udacity.asteroidradar.databinding.AsteroidListItemBinding
 
-class AsteroidListAdapter(val clickListener:OnClickListener) : ListAdapter<Asteroid, AsteroidListAdapter.ViewHolder>(DiffClass()) {
+class AsteroidListAdapter(private val clickListener: OnClickListener) : ListAdapter<Asteroid, AsteroidListAdapter.ViewHolder>(
+        DiffClass()) {
 
 
     //inflate ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-
 
         return ViewHolder.from(parent)
 
@@ -26,6 +24,8 @@ class AsteroidListAdapter(val clickListener:OnClickListener) : ListAdapter<Aster
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val asteroid = getItem(position)
+
+        //view.setOnClickListener
         holder.itemView.setOnClickListener {
 
             clickListener.onClick(asteroid)
@@ -33,8 +33,7 @@ class AsteroidListAdapter(val clickListener:OnClickListener) : ListAdapter<Aster
         holder.bind(asteroid)
     }
 
-    class ViewHolder(private val binding: AsteroidListItemBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(private val binding: AsteroidListItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
 
         fun bind(asteroid: Asteroid?) {
@@ -49,7 +48,9 @@ class AsteroidListAdapter(val clickListener:OnClickListener) : ListAdapter<Aster
 
                 val inflater = LayoutInflater.from(parent.context)
 
-                val binding = DataBindingUtil.inflate<AsteroidListItemBinding>(inflater,R.layout.asteroid_list_item,parent,false)
+                val binding =
+                        DataBindingUtil.inflate<AsteroidListItemBinding>(
+                                inflater, R.layout.asteroid_list_item, parent, false)
                 return ViewHolder(binding)
 
             }
@@ -60,7 +61,7 @@ class AsteroidListAdapter(val clickListener:OnClickListener) : ListAdapter<Aster
     }
 
 }
-
+//Diff Class
 class DiffClass : DiffUtil.ItemCallback<Asteroid>() {
     override fun areItemsTheSame(oldItem: Asteroid, newItem: Asteroid): Boolean {
 
@@ -74,8 +75,8 @@ class DiffClass : DiffUtil.ItemCallback<Asteroid>() {
     }
 
 }
+//onclickListner
 
-
-class OnClickListener(val clickListener: (asteroid:Asteroid) -> Unit) {
-    fun onClick(asteroid:Asteroid) = clickListener(asteroid)
+class OnClickListener(val clickListener: (asteroid: Asteroid) -> Unit) {
+    fun onClick(asteroid: Asteroid) = clickListener(asteroid)
 }

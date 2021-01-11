@@ -8,7 +8,7 @@ import androidx.room.Query
 
 @Dao
 interface AsteroidDAO {
-    //Return a LiveData today, order by Ascending
+    //Return a LiveData for today, order by Ascending
     @Query("SELECT * FROM asteroidentity WHERE closeApproachDate BETWEEN :startDate AND :endDate ORDER BY closeApproachDate ASC")
     fun getTodayAsteroids(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
 
@@ -17,8 +17,8 @@ interface AsteroidDAO {
     @Query("SELECT * FROM asteroidentity WHERE closeApproachDate BETWEEN :startDate AND :endDate ORDER BY closeApproachDate ASC")
     fun getWeekAsteroids(startDate: String, endDate: String): LiveData<List<AsteroidEntity>>
 
-    //Return a LiveData for all saved asteroids,
-    @Query("SELECT * FROM asteroidentity ORDER BY closeApproachDate DESC")
+    //Return a LiveData for all saved asteroids,order by Ascending
+    @Query("SELECT * FROM asteroidentity ORDER BY closeApproachDate ASC")
     fun getAllAsteroids(): LiveData<List<AsteroidEntity>>
 
 
