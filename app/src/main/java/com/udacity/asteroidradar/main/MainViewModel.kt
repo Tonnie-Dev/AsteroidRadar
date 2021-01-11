@@ -7,6 +7,7 @@ import com.udacity.asteroidradar.api.NeoWService
 import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.repo.AsteroidRepo
 import kotlinx.coroutines.launch
+import timber.log.Timber
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
@@ -61,7 +62,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
 
                 //get picture of the day from network
-                val picture: PictureOfDay = NeoWService.neoWService.getPictureOfTheDay(Constants.API_KEY)
+                val picture= NeoWService.neoWService.getPictureOfTheDay(Constants.API_KEY)
 
                 //set result to MutableLiveDataObject
                 _pictureOfTheDay.value = picture

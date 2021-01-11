@@ -66,9 +66,11 @@ fun RecyclerView.displayRecyclerViewData(data: List<Asteroid>?) {
 
 fun ImageView.showPicture(pictureOfDay: PictureOfDay?) {
 
+
+
     load(pictureOfDay?.url){
 
-        placeholder(R.drawable.loading_animation)
+       placeholder(R.drawable.loading_animation)
         error(R.drawable.ic_broken_image)
     }
 
