@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-   <!-- <color name="colorPrimary">#010613</color>
+    <color name="colorPrimary">#010613</color>
     <color name="colorPrimaryDark">#010613</color>
     <color name="colorAccent">#FF8282</color>
     <color name="app_background">#010613</color>
     <color name="default_text_color">#FFFFFF</color>
     <color name="text_grey">#D2D2D2</color>
-    <color name="potentially_hazardous">#FF8282</color>-->
+    <color name="potentially_hazardous">#FF8282</color>
 
 
+<!--
 
-    <!--My Generated Colors-->
+    &lt;!&ndash;My Generated Colors&ndash;&gt;
  <color name="primaryColor">#000000</color>
  <color name="primaryLightColor">#2c2c2c</color>
  <color name="primaryDarkColor">#000000</color>
@@ -19,6 +20,7 @@
  <color name="secondaryDarkColor">#260e04</color>
  <color name="primaryTextColor">#ffffff</color>
  <color name="secondaryTextColor">#ffffff</color>
+-->
 
 
  <!--<color name="primaryColor">#000000</color>
@@ -30,10 +32,10 @@
  <color name="primaryTextColor">#ffffff</color>
  <color name="secondaryTextColor">#000000</color>-->
 
-<!--Others-->
+<!--&lt;!&ndash;Others&ndash;&gt;
  <color name="potentially_hazardous">#CC0000</color>
  <color name="app_background">#010613</color>
  <color name="default_text_color">#FFFFFF</color>
- <color name="text_grey">#D2D2D2</color>
+ <color name="text_grey">#D2D2D2</color>-->
 
 </resources>
