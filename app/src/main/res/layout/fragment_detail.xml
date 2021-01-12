@@ -97,7 +97,7 @@
                     <ImageView
                         android:id="@+id/help_button"
                         android:layout_width="wrap_content"
-                        android:contentDescription="@string/astronomical_unit_explanation_button"
+                        android:contentDescription="@string/astronomical_unit_explanation"
                         android:layout_height="wrap_content"
                         android:padding="16dp"
                         app:srcCompat="@drawable/ic_help_circle" />

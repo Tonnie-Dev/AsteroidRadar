@@ -67,6 +67,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 //set result to MutableLiveDataObject
                 _pictureOfTheDay.value = picture
 
+                Timber.i("Today's Media Type is ${picture.mediaType} titled ${picture.title}")
 
             }
             catch (e: Exception) {

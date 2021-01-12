@@ -61,7 +61,7 @@ fun RecyclerView.displayRecyclerViewData(data: List<Asteroid>?) {
 
 }
 
-//Binding Adapter image contentDesc
+//Image ContentDesc Binding Adapter for hazard potential
 @BindingAdapter("imageHazardContentDesc")
 fun ImageView.imageHazardInfo(isHazardous: Boolean){
 
@@ -73,12 +73,35 @@ fun ImageView.imageHazardInfo(isHazardous: Boolean){
 
         false -> {
 
-            this.contentDescription   =  resources.getString(R.string.potentially_hazardous_asteroid_image)
+            this.contentDescription   =  resources.getString(R.string.not_hazardous_asteroid_image)
         }
     }
 
 
 }
+//Image ContentDesc Binding Adapter for picture of the day
+@BindingAdapter("imageOfTheDayContentDesc")
+fun ImageView.imageOfTheDayContentDescription(pictureOfDay: PictureOfDay?){
+
+    val isImage = (pictureOfDay?.mediaType.equals("image"))
+
+    when(isImage){
+
+        true -> {
+            this.contentDescription = resources.getString(R.string
+                                                                  .nasa_picture_of_day_content_description_format, pictureOfDay?.title)
+        }
+
+        false -> {
+
+            this.contentDescription   =  resources.getString(R.string.this_is_nasa_s_picture_of_day_showing_nothing_yet,)
+        }
+    }
+
+
+}
+
+
 
 //Binding Adapter for pictureOfTheDay using Kotlin's Coil  Library to load image
 @BindingAdapter("pictureOfTheDay")
