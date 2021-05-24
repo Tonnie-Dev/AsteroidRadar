@@ -12,7 +12,7 @@ import retrofit2.http.Query
 
 
 //BASE_URL
-private val BASE_URL = Constants.BASE_URL
+private const val BASE_URL = Constants.BASE_URL
 
 
 //Build Moshi Object
@@ -22,9 +22,8 @@ private val moshi =
                 .build()
 
 //Build Retrofit Object
-val retrofit =
+val retrofit: Retrofit =
         Retrofit.Builder()
-                .addConverterFactory(ScalarsConverterFactory.create())
                 .addConverterFactory(MoshiConverterFactory.create(moshi))
                 .baseUrl(BASE_URL)
                 .build()

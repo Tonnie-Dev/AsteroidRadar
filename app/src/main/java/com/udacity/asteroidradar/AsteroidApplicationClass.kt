@@ -27,7 +27,7 @@ class AsteroidApplicationClass : Application() {
     }
 
     //switch work to run on background
-     fun runWorkInBackground(){
+    private fun runWorkInBackground(){
 
          CoroutineScope(Default).launch {
 
