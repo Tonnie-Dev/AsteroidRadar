@@ -18,7 +18,8 @@ class AsteroidListAdapter(private val clickListener: OnClickListener) : ListAdap
     //inflate ViewHolder
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
 
-        return ViewHolder.from(parent)
+
+       return ViewHolder.from(parent)
 
     }
 
@@ -75,7 +76,7 @@ class DiffClass : DiffUtil.ItemCallback<Asteroid>() {
     }
 
 }
-//onclickListner
+//onclickListener
 
 class OnClickListener(val clickListener: (asteroid: Asteroid) -> Unit) {
     fun onClick(asteroid: Asteroid) = clickListener(asteroid)

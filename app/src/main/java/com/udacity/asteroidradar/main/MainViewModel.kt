@@ -60,7 +60,6 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
             try {
 
-
                 //get picture of the day from network
                 val picture= NeoWService.neoWService.getPictureOfTheDay(Constants.API_KEY)
 

@@ -21,14 +21,14 @@
 
     </style>
     <style name="CustomH6" parent="TextAppearance.MaterialComponents.Headline6">
-        <item name="android:textSize">18sp</item>
+        <item name="android:textSize">88sp</item>
         <item name="android:textStyle">bold</item>
 
     </style>
 
 
     <style name="CustomSub1" parent="TextAppearance.MaterialComponents.Subtitle1">
-        <item name="android:textSize">14sp</item>
+        <item name="android:textSize">44sp</item>
 
     </style>
 

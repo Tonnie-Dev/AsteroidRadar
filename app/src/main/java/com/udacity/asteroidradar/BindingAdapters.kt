@@ -56,7 +56,7 @@ fun RecyclerView.displayRecyclerViewData(data: List<Asteroid>?) {
     //get adapter
     val adapter = this.adapter as AsteroidListAdapter
 
-    //notifyDataSetChanged
+    //notifyDataSetChanged/ call diff
     adapter.submitList(data)
 
 }
@@ -82,7 +82,7 @@ fun ImageView.imageHazardInfo(isHazardous: Boolean){
 //Image ContentDesc Binding Adapter for picture of the day
 @BindingAdapter("imageOfTheDayContentDesc")
 fun ImageView.imageOfTheDayContentDescription(pictureOfDay: PictureOfDay?){
-
+    Timber.i("It is a ${pictureOfDay?.mediaType}")
     val isImage = (pictureOfDay?.mediaType.equals("image"))
 
     when(isImage){
