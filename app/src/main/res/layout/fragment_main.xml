@@ -28,10 +28,10 @@
 
             <ImageView
                 android:id="@+id/activity_main_image_of_the_day"
-                pictureOfTheDay="@{viewModel.pictureOfTheDay}"
+                app:pictureOfTheDay="@{viewModel.pictureOfTheDay}"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                imageOfTheDayContentDesc="@{viewModel.pictureOfTheDay}"
+                app:imageOfTheDayContentDesc="@{viewModel.pictureOfTheDay}"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
                 app:srcCompat="@drawable/placeholder_picture_of_day" />
@@ -49,6 +49,12 @@
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
                 android:textStyle="bold" />
+
+            <VideoView
+                android:id="@+id/videoView"
+                app:videoOfTheDay ="@{viewModel.pictureOfTheDay}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </FrameLayout>
 
         <androidx.recyclerview.widget.RecyclerView

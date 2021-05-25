@@ -5,9 +5,10 @@ import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.VideoView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import coil.api.load
+import coil.load
 import com.udacity.asteroidradar.main.AsteroidListAdapter
 import timber.log.Timber
 
@@ -121,6 +122,25 @@ fun ImageView.showPicture(pictureOfDay: PictureOfDay?) {
 
        placeholder(R.drawable.loading_animation)
         error(R.drawable.ic_broken_image)
+    }
+
+}
+
+@BindingAdapter("videoOfTheDay")
+fun VideoView.showVideo(pictureOfTheDay:PictureOfDay?) {
+
+    val isVideo = pictureOfTheDay?.mediaType.equals("video")
+
+    when(isVideo){
+
+        true -> {
+
+            visibility = View.VISIBLE
+        }
+        false -> {
+
+            visibility = View.GONE
+        }
     }
 
 }
