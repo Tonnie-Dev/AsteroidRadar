@@ -1,5 +1,6 @@
 package com.udacity.asteroidradar
 
+import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.ImageView
@@ -93,11 +94,14 @@ fun ImageView.imageOfTheDayContentDescription(pictureOfDay: PictureOfDay?){
         true -> {
             this.contentDescription = resources.getString(R.string
                                                                   .nasa_picture_of_day_content_description_format, pictureOfDay?.title)
+            visibility = View.VISIBLE
         }
 
         false -> {
 
             this.contentDescription   =  resources.getString(R.string.this_is_nasa_s_picture_of_day_showing_nothing_yet,)
+            //hide imageView
+            visibility = View.GONE
         }
     }
 
