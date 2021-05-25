@@ -42,11 +42,12 @@ class AsteroidApplicationClass : Application() {
         val workConstraints =
                 Constraints.Builder()
                         .setRequiredNetworkType(NetworkType.UNMETERED)
-                        .setRequiresCharging(true)
+                        .setRequiresCharging(false)
                         .build()
 
         //create WorkRequest
-        val workRequest = PeriodicWorkRequestBuilder<LoadAsteroidsWorker>(1, TimeUnit.DAYS).setConstraints(
+        val workRequest = PeriodicWorkRequestBuilder<LoadAsteroidsWorker>(15, TimeUnit.MINUTES)
+            .setConstraints(
                 workConstraints)
                 .build()
 

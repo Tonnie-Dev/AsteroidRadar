@@ -83,7 +83,10 @@ fun ImageView.imageHazardInfo(isHazardous: Boolean){
 @BindingAdapter("imageOfTheDayContentDesc")
 fun ImageView.imageOfTheDayContentDescription(pictureOfDay: PictureOfDay?){
     Timber.i("It is a ${pictureOfDay?.mediaType}")
+
     val isImage = (pictureOfDay?.mediaType.equals("image"))
+
+    Timber.i("Checking Type is image ---- $isImage")
 
     when(isImage){
 
