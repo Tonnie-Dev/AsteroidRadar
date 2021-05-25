@@ -11,6 +11,9 @@ import timber.log.Timber
 
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
+    private val _videoURL = MutableLiveData<String>()
+    val videoURL:LiveData<String>
+    get() = _videoURL
 
     //get database instant
     private val database = AsteroidDatabase.getDatabaseInstance(application)
@@ -65,6 +68,15 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
                 //set result to MutableLiveDataObject
                 _pictureOfTheDay.value = picture
+
+                if (picture.mediaType.equals("video")){
+
+                    _videoURL.value = picture.url
+
+                }else{
+
+
+                }
 
                 Timber.i("Today's Media Type is ${picture.mediaType} url ${picture.url}")
 
