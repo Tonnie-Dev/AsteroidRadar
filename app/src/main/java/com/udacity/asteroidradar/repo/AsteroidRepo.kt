@@ -29,6 +29,7 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
 
             //insert into AsteroidDatabase
             val parsedResponse = parseJSONStringResponse(networkResponse)
+
             database.asteroidDao.insertAsteroids(parsedResponse.asAsteroidEntity())
         }
     }

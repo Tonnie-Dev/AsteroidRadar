@@ -5,5 +5,5 @@ object Constants {
     const val BASE_URL = "https://api.nasa.gov/"
 
     //API KEY IS OMITTED
-    const val API_KEY = "OMITTED!!!!!!"
+    const val API_KEY = "2ZpAyijfOIMu8Qek8b8rifPnSiGhBJInqaMGId4O"
 }
