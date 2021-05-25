@@ -21,7 +21,7 @@ class AsteroidApplicationClass : Application() {
         super.onCreate()
         //initialize Timber
         Timber.plant(Timber.DebugTree())
-
+Timber.i("Application's onCreate Called")
         //start work inside onCreate
         runWorkInBackground()
     }
@@ -36,7 +36,7 @@ class AsteroidApplicationClass : Application() {
      }
 
     //set-up work
-    fun setUpAsteroidLoadingWork() {
+    private fun setUpAsteroidLoadingWork() {
 
         //define work constraints
         val workConstraints =

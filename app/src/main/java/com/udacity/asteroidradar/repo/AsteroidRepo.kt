@@ -12,6 +12,7 @@ import com.udacity.asteroidradar.database.AsteroidDatabase
 import com.udacity.asteroidradar.database.convertToAsteroidDataClass
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 
 class AsteroidRepo(private val database: AsteroidDatabase) {
 
@@ -29,6 +30,7 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
 
             //insert into AsteroidDatabase
             val parsedResponse = parseJSONStringResponse(networkResponse)
+            Timber.i("the Astroid are $parsedResponse")
 
             database.asteroidDao.insertAsteroids(parsedResponse.asAsteroidEntity())
         }
