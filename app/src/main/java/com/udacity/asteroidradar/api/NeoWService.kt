@@ -15,19 +15,22 @@ import retrofit2.http.Query
 private const val BASE_URL = Constants.BASE_URL
 
 
+
+
 //Build Moshi Object
 private val moshi =
-        Moshi.Builder()
-                .add(KotlinJsonAdapterFactory())
-                .build()
+    Moshi.Builder()
+        .add(KotlinJsonAdapterFactory())
+        .build()
 
 //Build Retrofit Object
-val retrofit: Retrofit =
-        Retrofit.Builder()
+val retrofit =
+    Retrofit.Builder()
+        .addConverterFactory(ScalarsConverterFactory.create())
+        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .baseUrl(BASE_URL)
+        .build()
 
-                .baseUrl(BASE_URL)
-            .addConverterFactory(MoshiConverterFactory.create(moshi))
-                .build()
 
 
 interface NeoWSInterface {
