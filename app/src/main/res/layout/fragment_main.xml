@@ -44,11 +44,11 @@
                 android:layout_gravity="bottom"
                 android:background="#55010613"
                 android:padding="16dp"
-                android:textAppearance="?attr/textAppearanceHeadline5"
-                android:text="@string/image_of_the_day"
+                android:textAppearance="?attr/textAppearanceSubtitle2"
+                android:text="@{viewModel.pictureOfTheDay.title}"
                 android:textColor="@android:color/white"
                 android:textSize="20sp"
-                android:textStyle="bold" />
+                android:textStyle="italic" />
 
             <VideoView
                 android:id="@+id/videoView"

@@ -66,6 +66,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                 //get picture of the day from network
                 val picture= NeoWService.neoWService.getPictureOfTheDay(Constants.API_KEY)
 
+                Timber.i("The title is ${picture.title}")
+
                 //set result to MutableLiveDataObject
                 _pictureOfTheDay.value = picture
 

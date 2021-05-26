@@ -15,8 +15,6 @@ import retrofit2.http.Query
 private const val BASE_URL = Constants.BASE_URL
 
 
-
-
 //Build Moshi Object
 private val moshi =
     Moshi.Builder()
@@ -26,11 +24,11 @@ private val moshi =
 //Build Retrofit Object
 val retrofit =
     Retrofit.Builder()
-        .addConverterFactory(ScalarsConverterFactory.create())
-        .addConverterFactory(MoshiConverterFactory.create(moshi))
+        .addConverterFactory(ScalarsConverterFactory.create()) // for parsing JSON String
+        .addConverterFactory(MoshiConverterFactory.create(moshi)) //for parsing KotlinObjects i.e.
+        // picture of the day
         .baseUrl(BASE_URL)
         .build()
-
 
 
 interface NeoWSInterface {
@@ -42,22 +40,24 @@ interface NeoWSInterface {
     @GET("neo/rest/v1/feed")
     suspend fun getNearEarthObjects(
 
-            //filters for the dates
-            @Query("start_date")
-            startDate: String,
-            @Query("end_date")
-            endDate: String,
+        //filters for the dates
+        @Query("start_date")
+        startDate: String,
+        @Query("end_date")
+        endDate: String,
 
-            //API_KEY appended at the end
-            @Query("api_key")
-            apiKey: String): String
+        //API_KEY appended at the end
+        @Query("api_key")
+        apiKey: String
+    ): String
 
 
     //get NASA's picture of the Day
     @GET("planetary/apod")
     suspend fun getPictureOfTheDay(
-            @Query("api_key")
-            apiKey: String): PictureOfDay
+        @Query("api_key")
+        apiKey: String
+    ): PictureOfDay
 
 
 }
