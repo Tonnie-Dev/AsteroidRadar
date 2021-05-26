@@ -34,6 +34,9 @@ class LoadAsteroidsWorker(context: Context, params: WorkerParameters) :
         }catch (e:HttpException){
             Timber.i("error - $e")
             Result.retry()
+        }catch (e: Exception){
+            Timber.i("exception - $e")
+            Result.failure()
         }
 
     }
