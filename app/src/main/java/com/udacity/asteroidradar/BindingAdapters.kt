@@ -55,6 +55,7 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 @BindingAdapter("recyclerViewData")
 fun RecyclerView.displayRecyclerViewData(data: List<Asteroid>?) {
 
+    Timber.i("Binding Adapter for Reycler called with $data")
     //get adapter
     val adapter = this.adapter as AsteroidListAdapter
 

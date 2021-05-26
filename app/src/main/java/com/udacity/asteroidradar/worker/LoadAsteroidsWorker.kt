@@ -30,8 +30,9 @@ class LoadAsteroidsWorker(context: Context, params: WorkerParameters) :
                 repo.getAsteroidsFromNetwork()
             Timber.i("called repo method")
             Result.success()
-        }catch (e:HttpException){
 
+        }catch (e:HttpException){
+            Timber.i("error - $e")
             Result.retry()
         }
 

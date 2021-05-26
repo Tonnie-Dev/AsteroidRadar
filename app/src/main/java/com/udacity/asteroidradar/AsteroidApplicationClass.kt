@@ -17,11 +17,13 @@ class AsteroidApplicationClass : Application() {
      * Use it to setup any background tasks, running expensive setup operations in a background
      * thread to avoid delaying app start.
      */
+
     override fun onCreate() {
         super.onCreate()
         //initialize Timber
         Timber.plant(Timber.DebugTree())
 Timber.i("Application's onCreate Called")
+
         //start work inside onCreate
         runWorkInBackground()
     }

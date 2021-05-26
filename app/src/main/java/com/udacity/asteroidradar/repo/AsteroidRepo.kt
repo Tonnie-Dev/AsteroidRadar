@@ -20,8 +20,10 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
 
     suspend fun getAsteroidsFromNetwork() {
 
+Timber.i("called getAsteroidFromNetwork method")
         withContext(IO) {
 
+            Timber.i("inside repo's IO")
             //get network result for the next seven days
             val networkResponse = NeoWService.neoWService.getNearEarthObjects(
                 DateFilter.WEEK_ASTEROIDS.startDate,
@@ -30,7 +32,7 @@ class AsteroidRepo(private val database: AsteroidDatabase) {
 
             //insert into AsteroidDatabase
             val parsedResponse = parseJSONStringResponse(networkResponse)
-            Timber.i("the Astroid are $parsedResponse")
+            Timber.i("the Asteroid are $parsedResponse")
 
             database.asteroidDao.insertAsteroids(parsedResponse.asAsteroidEntity())
         }
