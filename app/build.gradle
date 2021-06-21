@@ -79,7 +79,7 @@ dependencies {
 
 
     //WorkManager - Kotlin + coroutines
-    implementation 'androidx.work:work-runtime-ktx:2.6.0-alpha02'
+    implementation 'androidx.work:work-runtime-ktx:2.6.0-beta01'
 
 
     //Timber
@@ -89,5 +89,5 @@ dependencies {
     implementation 'io.coil-kt:coil:1.1.1'
 
     //Material Design Components
-    implementation 'com.google.android.material:material:1.4.0-beta01'
+    implementation 'com.google.android.material:material:1.4.0-rc01'
 }
