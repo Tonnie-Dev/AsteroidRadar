@@ -53,6 +53,7 @@
             <VideoView
                 android:id="@+id/videoView"
                 app:videoOfTheDay ="@{viewModel.pictureOfTheDay}"
+                app:videoURL="@{viewModel.videoURL}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </FrameLayout>
