@@ -9,7 +9,7 @@
 
         <variable
             name="viewModel"
-            type="com.androidshowtime.main.MainViewModel" />
+            type="com.androidshowtime.asteroidradar.main.MainViewModel" />
 
     </data>
 

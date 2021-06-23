@@ -9,7 +9,7 @@ android {
     compileSdkVersion 30
     buildToolsVersion "29.0.3"
     defaultConfig {
-        applicationId "com.androidshowtime"
+        applicationId "com.androidshowtime.asteroidradar"
         minSdkVersion 26
         targetSdkVersion 30
         versionCode 2
