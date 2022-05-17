@@ -7,7 +7,6 @@ apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "29.0.3"
     defaultConfig {
         applicationId "com.androidshowtime.asteroidradar"
         minSdkVersion 26
@@ -32,6 +31,7 @@ android {
     kotlinOptions {
         jvmTarget = JavaVersion.VERSION_1_8.toString()
     }
+    namespace 'com.androidshowtime.asteroidradar'
 }
 
 dependencies {
