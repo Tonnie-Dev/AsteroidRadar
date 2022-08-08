@@ -1,14 +1,15 @@
 <component name="libraryTable">
   <library name="Gradle: androidx.work:work-runtime:2.7.0-alpha04@aar">
     <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dc09409376443bbb3c710576455982e3/transformed/work-runtime-2.7.0-alpha04/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dc09409376443bbb3c710576455982e3/transformed/work-runtime-2.7.0-alpha04/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dc09409376443bbb3c710576455982e3/transformed/work-runtime-2.7.0-alpha04/AndroidManifest.xml" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dc09409376443bbb3c710576455982e3/transformed/work-runtime-2.7.0-alpha04/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dfed7a50c40a5fe7d613472e74cfecfa/transformed/work-runtime-2.7.0-alpha04/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dfed7a50c40a5fe7d613472e74cfecfa/transformed/work-runtime-2.7.0-alpha04/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dfed7a50c40a5fe7d613472e74cfecfa/transformed/work-runtime-2.7.0-alpha04/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.work/work-runtime/2.7.0-alpha04/15be0f482ca4ab822e5bdb56c17919007d29a50/work-runtime-2.7.0-alpha04-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.work/work-runtime/2.7.0-alpha04/15be0f482ca4ab822e5bdb56c17919007d29a50/work-runtime-2.7.0-alpha04-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.work/work-runtime/2.7.0-alpha04/15be0f482ca4ab822e5bdb56c17919007d29a50/work-runtime-2.7.0-alpha04-sources.jar!/" />
     </SOURCES>
   </library>

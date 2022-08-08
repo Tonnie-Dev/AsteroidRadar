@@ -4,11 +4,12 @@
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/7d403464fbd1975da401239d0ca4f07d/transformed/work-runtime-ktx-2.7.0-alpha04/jars/classes.jar!/" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7d403464fbd1975da401239d0ca4f07d/transformed/work-runtime-ktx-2.7.0-alpha04/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/7d403464fbd1975da401239d0ca4f07d/transformed/work-runtime-ktx-2.7.0-alpha04/AndroidManifest.xml" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/48a01b053e30c931aec253b7007a2994/transformed/work-runtime-ktx-2.7.0-alpha04/AndroidManifest.xml" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/48a01b053e30c931aec253b7007a2994/transformed/work-runtime-ktx-2.7.0-alpha04/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/48a01b053e30c931aec253b7007a2994/transformed/work-runtime-ktx-2.7.0-alpha04/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.work/work-runtime-ktx/2.7.0-alpha04/c369a84e544ea8b47435b6cd8bb434239aa165d0/work-runtime-ktx-2.7.0-alpha04-sources.jar!/" />
-      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.work/work-runtime-ktx/2.7.0-alpha04/c369a84e544ea8b47435b6cd8bb434239aa165d0/work-runtime-ktx-2.7.0-alpha04-sources.jar!/" />
       <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/androidx.work/work-runtime-ktx/2.7.0-alpha04/c369a84e544ea8b47435b6cd8bb434239aa165d0/work-runtime-ktx-2.7.0-alpha04-sources.jar!/" />
     </SOURCES>
   </library>
